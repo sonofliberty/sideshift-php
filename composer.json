@@ -1,0 +1,30 @@
+{
+    "name": "sonofliberty/sideshift-php",
+    "description": "Sideshift SDK",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Winter",
+            "email": "hi@alexwinter.me"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "jms/serializer": "^3.4",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "SonOfLiberty\\SideShift\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SonOfLiberty\\SideShift\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
+    }
+}
