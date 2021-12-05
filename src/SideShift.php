@@ -119,4 +119,14 @@ class SideShift
 
         return $this->serializer->deserialize($response->getBody()->getContents(), Order::class, 'json');
     }
+
+    public function fetchBulkOrders(array $orderIds): array
+    {
+        $response = $this->httpClient->post(self::BASE_URL . '/bulk-orders/', [
+            'headers' => ['x-sideshift-secret' => $this->secret],
+            'json' => ['orderIds' => $orderIds]
+        ]);
+
+        return $this->serializer->deserialize($response->getBody()->getContents(), 'array<' . Order::class . '>', 'json');
+    }
 }
