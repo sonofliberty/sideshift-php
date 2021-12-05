@@ -3,6 +3,7 @@
 namespace SonOfLiberty\SideShift\Model;
 
 use JMS\Serializer\Annotation as Serializer;
+use SonOfLiberty\SideShift\Model\Order\Deposit;
 
 class Order
 {
@@ -28,11 +29,13 @@ class Order
     private float $depositMin;
     private float $depositMax;
     /**
-     * @Serializer\Type("array<string>")
+     * @Serializer\Type("array<SonOfLiberty\SideShift\Model\Order\Deposit>")
      */
     private array $deposits;
     private ?string $quoteId;
     private ?float $estimatedNetworkFeeUsd;
+    private ?float $depositAmount = null;
+    private ?float $settleAmount = null;
 
     public function getId(): string
     {
@@ -69,6 +72,9 @@ class Order
         return $this->depositMax;
     }
 
+    /**
+     * @return Deposit[]
+     */
     public function getDeposits(): array
     {
         return $this->deposits;
@@ -82,5 +88,15 @@ class Order
     public function getEstimatedNetworkFeeUsd(): ?float
     {
         return $this->estimatedNetworkFeeUsd;
+    }
+
+    public function getDepositAmount(): ?float
+    {
+        return $this->depositAmount;
+    }
+
+    public function getSettleAmount(): ?float
+    {
+        return $this->settleAmount;
     }
 }
