@@ -14,6 +14,7 @@ class Deposit
     private float $settleAmount;
     private ?float $networkFeeAmount = null;
     /**
+     * @Serializer\SerializedName("createdAtISO")
      * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
      */
     private ?\DateTime $createdAt = null;
