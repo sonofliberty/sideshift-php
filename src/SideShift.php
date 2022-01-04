@@ -66,14 +66,27 @@ class SideShift
         return $this->serializer->deserialize($response->getBody()->getContents(), Quote::class, 'json');
     }
 
-    public function createVariableOrder(string $depositMethodId, string $settleMethodId, string $settleAddress, ?string $affiliateId = null, ?string $refundAddress = null): Order
-    {
+    public function createVariableOrder(
+        string $depositMethodId,
+        string $settleMethodId,
+        string $settleAddress,
+        ?string $destinationTag = null,
+        ?string $memo = null,
+        ?string $affiliateId = null,
+        ?string $refundAddress = null
+    ): Order {
         $request = [
             'type' => 'variable',
             'depositMethodId' => $depositMethodId,
             'settleMethodId' => $settleMethodId,
             'settleAddress' => $settleAddress
         ];
+        if (null !== $destinationTag) {
+            $request['destinationTag'] = $destinationTag;
+        }
+        if (null !== $memo) {
+            $request['memo'] = $memo;
+        }
         if (null !== $affiliateId) {
             $request['affiliateId'] = $affiliateId;
         }
@@ -89,13 +102,25 @@ class SideShift
         return $this->serializer->deserialize($response->getBody()->getContents(), Order::class, 'json');
     }
 
-    public function createFixedOrder(string $quoteId, string $settleAddress, ?string $affiliateId = null, ?string $refundAddress = null): Order
-    {
+    public function createFixedOrder(
+        string $quoteId,
+        string $settleAddress,
+        ?string $destinationTag = null,
+        ?string $memo = null,
+        ?string $affiliateId = null,
+        ?string $refundAddress = null
+    ): Order {
         $request = [
             'type' => 'fixed',
             'quoteId' => $quoteId,
             'settleAddress' => $settleAddress
         ];
+        if (null !== $destinationTag) {
+            $request['destinationTag'] = $destinationTag;
+        }
+        if (null !== $memo) {
+            $request['memo'] = $memo;
+        }
         if (null !== $affiliateId) {
             $request['affiliateId'] = $affiliateId;
         }
