@@ -11,6 +11,7 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use SonOfLiberty\SideShift\Model\Facts;
 use SonOfLiberty\SideShift\Model\Order;
+use SonOfLiberty\SideShift\Model\Pair;
 use SonOfLiberty\SideShift\Model\Quote;
 
 class SideShift
@@ -42,8 +43,22 @@ class SideShift
         return $this->serializer->deserialize($response->getBody()->getContents(), Facts::class, 'json');
     }
 
-    public function requestQuote(string $depositMethodId, string $settleMethodId, ?float $depositAmount = null, ?float $settleAmount = null, ?string $affiliateId = null): Quote
+    public function fetchPair(string $depositMethod, string $settleMethod): Pair
     {
+        $response = $this->httpClient->get(self::BASE_URL . '/pairs/' . $depositMethod . '/' . $settleMethod, [
+            'headers' => ['x-sideshift-secret' => $this->secret],
+        ]);
+
+        return $this->serializer->deserialize($response->getBody()->getContents(), Pair::class, 'json');
+    }
+
+    public function requestQuote(
+        string $depositMethodId,
+        string $settleMethodId,
+        ?float $depositAmount = null,
+        ?float $settleAmount = null,
+        ?string $affiliateId = null
+    ): Quote {
         $request = [
             'depositMethod' => $depositMethodId,
             'settleMethod' => $settleMethodId,
