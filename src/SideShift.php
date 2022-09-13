@@ -25,7 +25,7 @@ class SideShift
     public function __construct(?string $secret = null, ?ClientInterface $httpClient = null, ?SerializerInterface $serializer = null)
     {
         $this->secret = $secret;
-        $this->httpClient = null !== $httpClient ? $httpClient : new Client(['timeout' => 10]);
+        $this->httpClient = null !== $httpClient ? $httpClient : new Client(['timeout' => 15]);
         $this->serializer = null !== $serializer ? $serializer : SerializerBuilder::create()
             ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
             ->build();
