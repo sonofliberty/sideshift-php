@@ -57,7 +57,8 @@ class SideShift
         string $settleMethodId,
         ?float $depositAmount = null,
         ?float $settleAmount = null,
-        ?string $affiliateId = null
+        ?string $affiliateId = null,
+        ?string $userIp = null
     ): Quote {
         $request = [
             'depositMethod' => $depositMethodId,
@@ -74,7 +75,7 @@ class SideShift
         }
 
         $response = $this->httpClient->post(self::BASE_URL . '/quotes', [
-            'headers' => ['x-sideshift-secret' => $this->secret],
+            'headers' => ['x-sideshift-secret' => $this->secret, 'x-user-ip' => $userIp],
             'json' => $request
         ]);
 
@@ -88,7 +89,8 @@ class SideShift
         ?string $destinationTag = null,
         ?string $memo = null,
         ?string $affiliateId = null,
-        ?string $refundAddress = null
+        ?string $refundAddress = null,
+        ?string $userIp = null
     ): Order {
         $request = [
             'type' => 'variable',
@@ -110,7 +112,7 @@ class SideShift
         }
 
         $response = $this->httpClient->post(self::BASE_URL . '/orders', [
-            'headers' => ['x-sideshift-secret' => $this->secret],
+            'headers' => ['x-sideshift-secret' => $this->secret, 'x-user-ip' => $userIp],
             'json' => $request
         ]);
 
@@ -123,7 +125,8 @@ class SideShift
         ?string $destinationTag = null,
         ?string $memo = null,
         ?string $affiliateId = null,
-        ?string $refundAddress = null
+        ?string $refundAddress = null,
+        ?string $userIp = null
     ): Order {
         $request = [
             'type' => 'fixed',
@@ -144,7 +147,7 @@ class SideShift
         }
 
         $response = $this->httpClient->post(self::BASE_URL . '/orders', [
-            'headers' => ['x-sideshift-secret' => $this->secret],
+            'headers' => ['x-sideshift-secret' => $this->secret, 'x-user-ip' => $userIp],
             'json' => $request
         ]);
 
