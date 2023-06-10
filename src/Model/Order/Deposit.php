@@ -3,6 +3,7 @@
 namespace SonOfLiberty\SideShift\Model\Order;
 
 use JMS\Serializer\Annotation as Serializer;
+use SonOfLiberty\SideShift\Model\Order\Deposit\DepositTx;
 use SonOfLiberty\SideShift\Model\Order\Deposit\SettleTx;
 
 class Deposit
@@ -10,6 +11,7 @@ class Deposit
     private string $depositId;
     private string $status;
     private float $depositAmount;
+    private ?DepositTx $depositTx;
     private float $settleRate;
     private float $settleAmount;
     private ?float $networkFeeAmount = null;
@@ -36,6 +38,11 @@ class Deposit
     public function getDepositAmount(): float
     {
         return $this->depositAmount;
+    }
+
+    public function getDepositTx(): ?DepositTx
+    {
+        return $this->depositTx;
     }
 
     public function getSettleRate(): float
