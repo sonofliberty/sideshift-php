@@ -29,7 +29,7 @@ class SideShift
         $this->serializer = null !== $serializer ? $serializer : SerializerBuilder::create()
             ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
             ->build();
-        if ($this->serializer instanceof Serializer) {
+        if ($this->serializer instanceof Serializer && method_exists(AnnotationRegistry::class, 'registerLoader')) {
             AnnotationRegistry::registerLoader('class_exists');
         }
     }
