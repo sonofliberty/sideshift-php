@@ -9,20 +9,29 @@ use SonOfLiberty\SideShift\Model\Order\Deposit\SettleTx;
 class Deposit
 {
     private string $depositId;
+
     private string $status;
+
     private float $depositAmount;
+
     private ?DepositTx $depositTx;
+
     private float $settleRate;
+
     private float $settleAmount;
+
     private ?float $networkFeeAmount = null;
-    /**
-     * @Serializer\SerializedName("createdAtISO")
-     * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
-     */
+
+    #[Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")]
+    #[Serializer\SerializedName("createdAtISO")]
     private ?\DateTime $createdAt = null;
+
     private ?SettleTx $settleTx = null;
+
     private ?string $refundAddress = null;
+
     private ?string $refundTx = null;
+
     private ?string $reason = null;
 
     public function getDepositId(): string

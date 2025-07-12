@@ -7,19 +7,23 @@ use JMS\Serializer\Annotation as Serializer;
 class Quote
 {
     private ?string $id = null;
-    /**
-     * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
-     */
+
+    #[Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")]
     private ?\DateTime $createdAt = null;
+
     private ?float $depositAmount = null;
+
     private ?string $depositMethod = null;
-    /**
-     * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
-     */
+
+    #[Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")]
     private ?\DateTime $expiresAt = null;
+
     private ?float $rate = null;
+
     private ?float $settleAmount = null;
+
     private ?string $settleMethod = null;
+
     private ?string $affiliateId = null;
 
     public function getId(): ?string

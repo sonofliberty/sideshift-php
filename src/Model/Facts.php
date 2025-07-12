@@ -11,23 +11,20 @@ class Facts
 {
     /**
      * @var Asset[]
-     *
-     * @Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\Asset>")
      */
+    #[Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\Asset>")]
     private array $assets = [];
 
     /**
      * @var DepositMethod[]
-     *
-     * @Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\DepositMethod>")
      */
+    #[Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\DepositMethod>")]
     private array $depositMethods = [];
 
     /**
      * @var SettleMethod[]
-     *
-     * @Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\SettleMethod>")
      */
+    #[Serializer\Type("array<string, SonOfLiberty\SideShift\Model\Facts\SettleMethod>")]
     private array $settleMethods = [];
 
     /**

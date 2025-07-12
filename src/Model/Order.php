@@ -8,33 +8,34 @@ use SonOfLiberty\SideShift\Model\Order\Deposit;
 class Order
 {
     private string $id;
-    /**
-     * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
-     * @Serializer\SerializedName("createdAtISO")
-     */
+
+    #[Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")]
+    #[Serializer\SerializedName("createdAtISO")]
     private \DateTime $createdAt;
-    /**
-     * @Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")
-     * @Serializer\SerializedName("expiresAtISO")
-     */
+
+    #[Serializer\Type("DateTime<'Y-m-d\TH:i:s.vP'>")]
+    #[Serializer\SerializedName("expiresAtISO")]
     private \DateTime $expiresAt;
-    /**
-     * @Serializer\Type("array<string, string>")
-     */
+
+    #[Serializer\Type("array<string, string>")]
     private array $depositAddress;
-    /**
-     * @Serializer\Type("array<string, string>")
-     */
+
+    #[Serializer\Type("array<string, string>")]
     private array $settleAddress;
+
     private float $depositMin;
+
     private float $depositMax;
-    /**
-     * @Serializer\Type("array<SonOfLiberty\SideShift\Model\Order\Deposit>")
-     */
+
+    #[Serializer\Type("array<SonOfLiberty\SideShift\Model\Order\Deposit>")]
     private array $deposits;
+
     private ?string $quoteId;
+
     private ?float $estimatedNetworkFeeUsd;
+
     private ?float $depositAmount = null;
+
     private ?float $settleAmount = null;
 
     public function getId(): string
